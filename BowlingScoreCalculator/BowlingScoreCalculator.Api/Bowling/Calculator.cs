@@ -18,16 +18,25 @@ public class Calculator
         var finished = true;
         for (int i = 0; i < rollsArr.Length; i += 2)
         {
-            if (rollsArr[i] == 10) //strike
+            var score = rollsArr[i] + rollsArr[i + 1];
+            if (score < 10) //no bonus pts
             {
-                runningTotal += rollsArr[i] + rollsArr[i + 1] + rollsArr[i + 2];
+                runningTotal += score;
                 scores.Add(runningTotal);
-                if (i + 2 >= rollsArr.Length - 1)
-                {
-                    break;
-                }
-                i--;
                 continue;
+            }
+
+            score += rollsArr[i + 2]; //spare
+            runningTotal += score;
+            scores.Add(runningTotal);
+
+            if (i + 2 >= rollsArr.Length - 1)
+            {
+                break;
+            }
+            if (rollsArr[i] == 10) //strike, frame ends with first roll
+            {
+                i--;
             }
         }
         return new GameResult(scores) { IsCompleted = finished };
