@@ -12,13 +12,17 @@ public class Calculator
 
     public GameResult Calculate(IEnumerable<int> rolls)
     {
-        var rollsArr = rolls.ToArray();
+        List<int?> scores = CalculateScores(rolls.ToArray());
+        return new GameResult(scores) { IsCompleted = scores.Count == 10 && scores.Last() != null };
+    }
+
+    private static List<int?> CalculateScores(int[] rolls)
+    {
         var runningTotal = 0;
         var scores = new List<int?>();
-        var finished = true;
-        for (int i = 0; i < rollsArr.Length; i += 2)
+        for (int i = 0; i < rolls.Length; i += 2)
         {
-            if (i + 1 >= rollsArr.Length)
+            if (i + 1 >= rolls.Length)
             {
                 if (scores.Count < 10)
                 {
@@ -26,7 +30,7 @@ public class Calculator
                 }
                 break;
             }
-            var score = rollsArr[i] + rollsArr[i + 1];
+            var score = rolls[i] + rolls[i + 1];
 
             if (score < 10) //no bonus pts
             {
@@ -34,8 +38,8 @@ public class Calculator
                 scores.Add(runningTotal);
                 continue;
             }
-            
-            if (i + 2 >= rollsArr.Length)
+
+            if (i + 2 >= rolls.Length)
             {
                 if (scores.Count < 10)
                 {
@@ -44,20 +48,17 @@ public class Calculator
                 break;
             }
 
-            score += rollsArr[i + 2]; //spare
+            score += rolls[i + 2]; //spare
 
             runningTotal += score;
             scores.Add(runningTotal);
 
-            if (rollsArr[i] == 10) //strike, frame ends with first roll
+            if (rolls[i] == 10) //strike, frame ends with first roll
             {
                 i--;
             }
         }
-        if (scores.Count < 10 || scores.Last() == null)
-        {
-            finished = false;
-        }
-        return new GameResult(scores) { IsCompleted = finished };
+
+        return scores;
     }
 }
