@@ -9,12 +9,12 @@ public class CalculatorTestsForIncompleteGame
     public void AllStrikes()
     {
         var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = Enumerable.Repeat(10, 11).ToArray();
+        var rolls = Enumerable.Repeat(10, 10).ToArray();
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
             Assert.That(result.IsCompleted, Is.False);
-            Assert.That(result.Scores.Last(x=> x != null), Is.EqualTo(270));
+            Assert.That(result.Scores.Last(x=> x != null), Is.EqualTo(240));
             Assert.That(result.Scores.Count(), Is.EqualTo(10));
             Assert.That(result.Scores.Last(), Is.Null);
         });
@@ -97,13 +97,14 @@ public class CalculatorTestsForIncompleteGame
     public void MixedGame()
     {
         var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = new int[] { 2, 4, 5, 5, 6, 3, 10, 10, 8, 1, 5, 5, 10, 7, 2 };
+        var rolls = new int[] { 1, 1, 1, 1, 9, 1, 2, 8, 9, 1, 10, 10 };
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
             Assert.That(result.IsCompleted, Is.False);
-            Assert.That(result.Scores.Last(), Is.EqualTo(135));
-            Assert.That(result.Scores.Count(), Is.EqualTo(9));
+            Assert.That(result.Scores.Last(x => x != null), Is.EqualTo(55));
+            Assert.That(result.Scores.Count(), Is.EqualTo(7));
+            Assert.That(result.Scores.Last(), Is.Null);
         });
     }
 }
