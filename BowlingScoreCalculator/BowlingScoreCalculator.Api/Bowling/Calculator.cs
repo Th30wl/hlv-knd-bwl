@@ -26,7 +26,7 @@ public class Calculator
             {
                 if (scores.Count < 10)
                 {
-                    scores.Add(null);
+                    scores.Add(null); //incomplete frame
                 }
                 break;
             }
@@ -41,9 +41,9 @@ public class Calculator
 
             if (i + 2 >= rolls.Length)
             {
-                if (scores.Count < 10)
+                if (scores.Count < 10) //incomplete after strike or spare
                 {
-                    scores.Add(null);
+                    scores.AddRange(rolls[i] == 10 ? new int?[] { null, null } : new int?[] { null });
                 }
                 break;
             }
