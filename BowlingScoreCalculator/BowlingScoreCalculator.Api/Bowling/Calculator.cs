@@ -1,6 +1,6 @@
 ﻿namespace BowlingScoreCalculator.Api.Bowling;
 
-public class Calculator
+public class Calculator : ICalculator
 {
     private readonly ILogger<Calculator> logger;
     private const string tooMuchRolls = "Game has more rolls than allowed";

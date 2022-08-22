@@ -1,13 +1,22 @@
 ﻿namespace BowlingScoreCalculator.Api.Models;
 
+/// <summary>
+/// Game calculation response data
+/// </summary>
 public class CalculationResponse
 {
-    public IEnumerable<short> FrameProgressScores { get; set; }
+    /// <summary>
+    /// Calculated scores per each frame
+    /// </summary>
+    public IEnumerable<string>? FrameProgressScores { get; set; }
 
-    public CalculationResponse(IEnumerable<short> frameProgressScores)
-    {
-        FrameProgressScores = frameProgressScores;
-    }
+    /// <summary>
+    /// Indicates if the game has completed
+    /// </summary>
+    public bool? GameCompleted { get; set; }
 
-    public bool GameCompleted { get; set; }
+    /// <summary>
+    /// Indicates if the game has valid data
+    /// </summary>
+    public bool GameValid { get; set; } = true;
 }
