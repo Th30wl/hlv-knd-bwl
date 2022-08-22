@@ -3,6 +3,8 @@
 public class Calculator
 {
     private readonly ILogger<Calculator> logger;
+    private const string tooMuchRolls = "Game has more rolls than allowed";
+    private const string tooMuchPins = "Game has rolls with more pins than allowed";
 
     public Calculator(ILogger<Calculator> logger)
     {
@@ -24,6 +26,7 @@ public class Calculator
         {
             if (scores.Count == 10)
             {
+                ValidateRollCount(rolls, i);
                 break;
             }
             int? current = rolls[i];
@@ -39,8 +42,10 @@ public class Calculator
                 continue;
             }
 
+            ValidateNumberOfPins(current, score);
+
             score += next2; //spare
-            
+
             runningTotal += score;
             scores.Add(runningTotal);
 
@@ -51,5 +56,29 @@ public class Calculator
         }
 
         return scores;
+    }
+
+    private static void ValidateNumberOfPins(int? current, int? score)
+    {
+        if (current < 10 && score > 10)
+        {
+            throw new InvalidGameException(tooMuchPins);
+        }
+    }
+
+    private static void ValidateRollCount(int[] rolls, int rollIndex)
+    {
+        if (rollIndex + 2 < rolls.Length)
+        {
+            throw new InvalidGameException(tooMuchRolls);
+        }
+        if (rollIndex + 2 == rolls.Length && rolls[rollIndex] < 10)
+        {
+            throw new InvalidGameException(tooMuchRolls);
+        }
+        if (rollIndex + 1 == rolls.Length && rolls[rollIndex] + rolls[rollIndex - 1] < 10)
+        {
+            throw new InvalidGameException(tooMuchRolls);
+        }
     }
 }
