@@ -18,19 +18,19 @@ public class Calculator
 
     private static List<int?> CalculateScores(int[] rolls)
     {
-        var runningTotal = 0;
+        int? runningTotal = 0;
         var scores = new List<int?>();
         for (int i = 0; i < rolls.Length; i += 2)
         {
-            if (i + 1 >= rolls.Length)
+            if (scores.Count == 10)
             {
-                if (scores.Count < 10)
-                {
-                    scores.Add(null); //incomplete frame
-                }
                 break;
             }
-            var score = rolls[i] + rolls[i + 1];
+            int? current = rolls[i];
+            int? next1 = i + 1 < rolls.Length ? rolls[i + 1] : null;
+            int? next2 = i + 2 < rolls.Length ? rolls[i + 2] : null;
+
+            var score = current + next1;
 
             if (score < 10) //no bonus pts
             {
@@ -39,21 +39,12 @@ public class Calculator
                 continue;
             }
 
-            if (i + 2 >= rolls.Length)
-            {
-                if (scores.Count < 10) //incomplete after strike or spare
-                {
-                    scores.AddRange(rolls[i] == 10 ? new int?[] { null, null } : new int?[] { null });
-                }
-                break;
-            }
-
-            score += rolls[i + 2]; //spare
-
+            score += next2; //spare
+            
             runningTotal += score;
             scores.Add(runningTotal);
 
-            if (rolls[i] == 10) //strike, frame ends with first roll
+            if (current == 10) //strike, frame ends with first roll
             {
                 i--;
             }
