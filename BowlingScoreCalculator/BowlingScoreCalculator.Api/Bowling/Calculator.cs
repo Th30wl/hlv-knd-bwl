@@ -60,6 +60,10 @@ public class Calculator : ICalculator
 
     private static void ValidateNumberOfPins(uint? current, uint? score)
     {
+        if (current > 10)
+        {
+            throw new InvalidGameException(tooMuchPins);
+        }
         if (current < 10 && score > 10)
         {
             throw new InvalidGameException(tooMuchPins);
