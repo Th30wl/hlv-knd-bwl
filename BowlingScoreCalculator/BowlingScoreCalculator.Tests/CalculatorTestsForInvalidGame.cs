@@ -18,7 +18,7 @@ public class CalculatorTestsForInvalidGame
     [Test]
     public void TooMuchRollsAllStrikes()
     {
-        var rolls = Enumerable.Repeat(10, 13).ToArray();
+        var rolls = Enumerable.Repeat<uint>(10, 13).ToArray();
         var ex = Assert.Throws<InvalidGameException>(() =>
         {
             calc.Calculate(rolls);
@@ -29,7 +29,7 @@ public class CalculatorTestsForInvalidGame
     [Test]
     public void TooMuchRollsAllSpares()
     {
-        var rolls = Enumerable.Repeat(5, 22).ToArray();
+        var rolls = Enumerable.Repeat<uint>(5, 22).ToArray();
         var ex = Assert.Throws<InvalidGameException>(() =>
         {
             calc.Calculate(rolls);
@@ -40,7 +40,7 @@ public class CalculatorTestsForInvalidGame
     [Test]
     public void TooMuchRollsNoBonus()
     {
-        var rolls = Enumerable.Repeat(3, 21).ToArray();
+        var rolls = Enumerable.Repeat<uint>(3, 21).ToArray();
         var ex = Assert.Throws<InvalidGameException>(() =>
         {
             calc.Calculate(rolls);
@@ -51,7 +51,7 @@ public class CalculatorTestsForInvalidGame
     [Test]
     public void TooMuchPinsInFrame()
     {
-        var rolls = new int[] { 2, 4, 5, 8, 6, 3, 10, 10, 8, 1, 5, 5, 10, 7, 2, 4, 5 };
+        var rolls = new uint[] { 2, 4, 5, 8, 6, 3, 10, 10, 8, 1, 5, 5, 10, 7, 2, 4, 5 };
         var ex = Assert.Throws<InvalidGameException>(() =>
         {
             calc.Calculate(rolls);
