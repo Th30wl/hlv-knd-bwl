@@ -58,4 +58,15 @@ public class CalculatorTestsForInvalidGame
         });
         Assert.That(ex.Message, Is.EqualTo(tooMuchPins));
     }
+
+    [Test]
+    public void SingleRollWithOverTenPins()
+    {
+        var rolls = new uint[] { 11 };
+        var ex = Assert.Throws<InvalidGameException>(() =>
+        {
+            calc.Calculate(rolls);
+        });
+        Assert.That(ex.Message, Is.EqualTo(tooMuchPins));
+    }
 }
