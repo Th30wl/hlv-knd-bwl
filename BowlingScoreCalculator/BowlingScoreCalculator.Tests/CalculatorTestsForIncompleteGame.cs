@@ -5,11 +5,18 @@ namespace BowlingScoreCalculator.Tests;
 
 public class CalculatorTestsForIncompleteGame
 {
+    private Calculator calc;
+
+    [SetUp]
+    public void SetUp()
+    {
+        calc = new Calculator(new NullLogger<Calculator>());
+    }
+
     [Test]
     public void AllStrikes()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = Enumerable.Repeat(10, 10).ToArray();
+        var rolls = Enumerable.Repeat<uint>(10, 10).ToArray();
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
@@ -23,8 +30,7 @@ public class CalculatorTestsForIncompleteGame
     [Test]
     public void AllSpares()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = Enumerable.Repeat(5, 20).ToArray();
+        var rolls = Enumerable.Repeat<uint>(5, 20).ToArray();
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
@@ -38,8 +44,7 @@ public class CalculatorTestsForIncompleteGame
     [Test]
     public void NoBonusFrames()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = Enumerable.Repeat(3, 6).ToArray();
+        var rolls = Enumerable.Repeat<uint>(3, 6).ToArray();
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
@@ -52,8 +57,7 @@ public class CalculatorTestsForIncompleteGame
     [Test]
     public void NoBonusFramesUnfinishedFrame()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = Enumerable.Repeat(3, 7).ToArray();
+        var rolls = Enumerable.Repeat<uint>(3, 7).ToArray();
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
@@ -67,8 +71,7 @@ public class CalculatorTestsForIncompleteGame
     [Test]
     public void GutterBall()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = Enumerable.Repeat(0, 6).ToArray();
+        var rolls = Enumerable.Repeat<uint>(0, 6).ToArray();
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
@@ -81,8 +84,7 @@ public class CalculatorTestsForIncompleteGame
     [Test]
     public void MixedGameWithUnfinishedFrame()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = new int[] { 2, 4, 5, 5, 6, 3, 10, 10, 8, 1, 5 };
+        var rolls = new uint[] { 2, 4, 5, 5, 6, 3, 10, 10, 8, 1, 5 };
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {
@@ -96,8 +98,7 @@ public class CalculatorTestsForIncompleteGame
     [Test]
     public void MixedGame()
     {
-        var calc = new Calculator(new NullLogger<Calculator>());
-        var rolls = new int[] { 1, 1, 1, 1, 9, 1, 2, 8, 9, 1, 10, 10 };
+        var rolls = new uint[] { 1, 1, 1, 1, 9, 1, 2, 8, 9, 1, 10, 10 };
         var result = calc.Calculate(rolls);
         Assert.Multiple(() =>
         {

@@ -12,16 +12,16 @@ public class Calculator
         logger.LogDebug($"Created instance of {nameof(Calculator)}");
     }
 
-    public GameResult Calculate(IEnumerable<int> rolls)
+    public GameResult Calculate(IEnumerable<uint> rolls)
     {
-        List<int?> scores = CalculateScores(rolls.ToArray());
+        List<uint?> scores = CalculateScores(rolls.ToArray());
         return new GameResult(scores) { IsCompleted = scores.Count == 10 && scores.Last() != null };
     }
 
-    private static List<int?> CalculateScores(int[] rolls)
+    private static List<uint?> CalculateScores(uint[] rolls)
     {
-        int? runningTotal = 0;
-        var scores = new List<int?>();
+        uint? runningTotal = 0;
+        var scores = new List<uint?>();
         for (int i = 0; i < rolls.Length; i += 2)
         {
             if (scores.Count == 10)
@@ -29,9 +29,9 @@ public class Calculator
                 ValidateRollCount(rolls, i);
                 break;
             }
-            int? current = rolls[i];
-            int? next1 = i + 1 < rolls.Length ? rolls[i + 1] : null;
-            int? next2 = i + 2 < rolls.Length ? rolls[i + 2] : null;
+            uint? current = rolls[i];
+            uint? next1 = i + 1 < rolls.Length ? rolls[i + 1] : null;
+            uint? next2 = i + 2 < rolls.Length ? rolls[i + 2] : null;
 
             var score = current + next1;
 
@@ -58,7 +58,7 @@ public class Calculator
         return scores;
     }
 
-    private static void ValidateNumberOfPins(int? current, int? score)
+    private static void ValidateNumberOfPins(uint? current, uint? score)
     {
         if (current < 10 && score > 10)
         {
@@ -66,7 +66,7 @@ public class Calculator
         }
     }
 
-    private static void ValidateRollCount(int[] rolls, int rollIndex)
+    private static void ValidateRollCount(uint[] rolls, int rollIndex)
     {
         if (rollIndex + 2 < rolls.Length)
         {
