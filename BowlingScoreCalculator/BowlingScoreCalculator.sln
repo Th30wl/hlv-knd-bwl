@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator.Api", "BowlingScoreCalculator.Api\BowlingScoreCalculator.Api.csproj", "{2E498F3E-F571-4974-A719-12F70591F769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingScoreCalculator.Api", "BowlingScoreCalculator.Api\BowlingScoreCalculator.Api.csproj", "{2E498F3E-F571-4974-A719-12F70591F769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator.Tests", "BowlingScoreCalculator.Tests\BowlingScoreCalculator.Tests.csproj", "{DCB3CBAE-4C69-41A2-8646-C70307B73ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingScoreCalculator.Tests", "BowlingScoreCalculator.Tests\BowlingScoreCalculator.Tests.csproj", "{DCB3CBAE-4C69-41A2-8646-C70307B73ECA}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0D96B708-6D21-4F68-9969-E8A8D19C68D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DCB3CBAE-4C69-41A2-8646-C70307B73ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB3CBAE-4C69-41A2-8646-C70307B73ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB3CBAE-4C69-41A2-8646-C70307B73ECA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D96B708-6D21-4F68-9969-E8A8D19C68D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D96B708-6D21-4F68-9969-E8A8D19C68D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D96B708-6D21-4F68-9969-E8A8D19C68D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D96B708-6D21-4F68-9969-E8A8D19C68D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

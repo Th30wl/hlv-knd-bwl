@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BowlingScoreCalculator.Tests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

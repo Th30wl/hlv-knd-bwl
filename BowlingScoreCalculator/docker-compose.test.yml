@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  bowlingscorecalculator.test:
+    image: ${DOCKER_REGISTRY-}bowlingscorecalculatortest
+    build:
+      context: .
+      dockerfile: BowlingScoreCalculator.Tests/Dockerfile
+    volumes:
+      - "../TestResults:/src/BowlingScoreCalculator.Tests/TestResults"
