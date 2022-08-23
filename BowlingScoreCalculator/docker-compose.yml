@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  bowlingscorecalculator.api:
+    image: ${DOCKER_REGISTRY-}bowlingscorecalculatorapi
+    build:
+      context: .
+      dockerfile: BowlingScoreCalculator.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8654:80"
